@@ -7,6 +7,6 @@
     {
         public const string GUID = "luna.gorillaxs.friends";
         public const string Name = "GorillaXS.Friends";
-        public const string Version = "1.0.0";
+        public const string Version = "1.0.1";
     }
 }
