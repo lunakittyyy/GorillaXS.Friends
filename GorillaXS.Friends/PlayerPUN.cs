@@ -1,7 +1,8 @@
-﻿using GorillaXS;
+﻿using GorillaNetworking;
 using GorillaXS.Friends.Utils;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Linq;
 
 namespace GorillaXS.Friends
 {
@@ -28,13 +29,11 @@ namespace GorillaXS.Friends
         public override void OnJoinedRoom()
         {
             base.OnJoinedRoom();
-            foreach (Player player in PhotonNetwork.PlayerListOthers)
-            {
-                if (FriendUtil.IsFriend(player.UserId))
-                {
-                    Notifier.Notify("Friend In Room", $"Your friend {player.NickName} is in this room", timeout: 1.5f);
-                }
-            }
+
+            Player[] friends = [.. PhotonNetwork.PlayerListOthers.Where(player => FriendUtil.IsFriend(player.UserId))];
+            bool isSafety = PlayFabAuthenticator.instance.GetSafety();
+
+            if (friends.Any()) Notifier.Notify($"Friend{(friends.Length > 1 ? "s" : "")} in room", friends.Length > 1 ? $"Your friends {string.Join(", ", friends.Select(player => isSafety ? player.DefaultName : player.NickName))} are in this room" : $"Your friend {(isSafety ? friends.First().DefaultName : friends.First().NickName)} is in this room", timeout: 1.5f);
         }
     }
 }
