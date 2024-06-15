@@ -5,7 +5,7 @@
     /// </summary>
     internal class PluginInfo
     {
-        public const string GUID = "com.luna.gorillatag.gorillaxs.friends";
+        public const string GUID = "luna.gorillaxs.friends";
         public const string Name = "GorillaXS.Friends";
         public const string Version = "1.0.0";
     }

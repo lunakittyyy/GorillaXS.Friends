@@ -12,7 +12,7 @@ namespace GorillaXS.Friends
             base.OnPlayerEnteredRoom(newPlayer);
             if (FriendUtil.IsFriend(newPlayer.UserId))
             {
-                Notifier.Notify("Friend Join", $"Your friend {newPlayer.NickName} joined the room");
+                Notifier.Notify("Friend Join", $"Your friend {newPlayer.NickName} joined the room", timeout: 1.5f);
             }
         }
 
@@ -21,7 +21,7 @@ namespace GorillaXS.Friends
             base.OnPlayerLeftRoom(otherPlayer);
             if (FriendUtil.IsFriend(otherPlayer.UserId))
             {
-                Notifier.Notify("Friend Leave", $"Your friend {otherPlayer.NickName} left the room");
+                Notifier.Notify("Friend Leave", $"Your friend {otherPlayer.NickName} left the room", timeout: 1.5f);
             }
         }
 
@@ -32,7 +32,7 @@ namespace GorillaXS.Friends
             {
                 if (FriendUtil.IsFriend(player.UserId))
                 {
-                    Notifier.Notify("Friend In Room", $"Your friend {player.NickName} is in this room");
+                    Notifier.Notify("Friend In Room", $"Your friend {player.NickName} is in this room", timeout: 1.5f);
                 }
             }
         }
