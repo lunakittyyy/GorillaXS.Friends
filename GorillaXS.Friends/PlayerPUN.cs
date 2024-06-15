@@ -33,7 +33,7 @@ namespace GorillaXS.Friends
             Player[] friends = [.. PhotonNetwork.PlayerListOthers.Where(player => FriendUtil.IsFriend(player.UserId))];
             bool isSafety = PlayFabAuthenticator.instance.GetSafety();
 
-            if (friends.Any()) Notifier.Notify($"Friend{(friends.Length > 1 ? "s" : "")} in room", friends.Length > 1 ? $"Your friends {string.Join(", ", friends.Select(player => isSafety ? player.DefaultName : player.NickName))} is in this room" : $"Your friend {(isSafety ? friends.First().DefaultName : friends.First().NickName)} is in this room", timeout: 1.5f);
+            if (friends.Any()) Notifier.Notify($"Friend{(friends.Length > 1 ? "s" : "")} in room", friends.Length > 1 ? $"Your friends {string.Join(", ", friends.Select(player => isSafety ? player.DefaultName : player.NickName))} are in this room" : $"Your friend {(isSafety ? friends.First().DefaultName : friends.First().NickName)} is in this room", timeout: 1.5f);
         }
     }
 }
